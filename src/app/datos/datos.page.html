@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <div class="input-group">
+      <input class="form-control" type="text" name="" placeholder="Recipient's text" aria-label="Recipient's text" aria-describedby="my-addon">
+      <div class="input-group-append">
+        <span class="input-group-text" id="my-addon">Text</span>
+      </div>
+    </div>
+    <ion-title>punto de venta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h3><strong>Supervisor:</strong>{{supervisor}}</h3>
+  <h6>Fecha: {{fecha}}</h6>
+  <ion-card *ngFor = "let myDatos of datos">
+    <ion-card-content>
+      <ion-toggle [enableOnOffLabels]="true" [checked]>Enable Notifications</ion-toggle>
+      <ion-accordion-group>
+        <ion-accordion  value = "first" [disabled]="false">
+          <ion-item slot="header">
+            <ion-label>{{myDatos.apellido}}</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            {{myDatos.nombre}}
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+      
+

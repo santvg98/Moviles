@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div style="display: flex;">
+    <ion-avatar>
+      <img alt="Logos_sena" src="../../assets/img/Logos_sena.png">
+    </ion-avatar>
+    <ion-title>
+   
+      Home
+    </ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <strong><h1 id="nombre">Mi primera App</h1></strong>
+  <ion-avatar id="myAvatar">
+    <img alt="Logos_sena" src="../../assets/img/caja-registradora.png">
+  </ion-avatar>
+  <ion-item>
+    <ion-input type="number" label="CC. Supervisor" labelPlacement="floating" placeholder="Cédula" [(ngModel)]="mySupervisor" (ionChange)="validarCedula()"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="ingresar()" [disabled]="!esValida">Ingresar</ion-button>
+</ion-content>
+
+
