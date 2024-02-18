@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HomePage } from '../home/home.page';
 
 @Component({
   selector: 'app-datos',
@@ -31,7 +32,7 @@ export class DatosPage implements OnInit {
   datoSupervisor() {
     this.infoSupervisor = [
       {
-        cc: "1234567",
+        cc: "7654321",
         nombre: "Santiago",
         apellido: "Velez"
       },
