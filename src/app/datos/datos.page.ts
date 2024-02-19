@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HomePage } from '../home/home.page';
+
 
 @Component({
   selector: 'app-datos',
@@ -8,10 +8,11 @@ import { HomePage } from '../home/home.page';
   styleUrls: ['./datos.page.scss'],
 })
 export class DatosPage implements OnInit {
-  ccSupervisor: string | null = ''
-  infoSupervisor: Array<any> = []
+  nombreSupervisor: string | null = ''
+
   datos: Array<any> = []
-  supervisor: string = ''
+  show:{[key: number]: boolean} = {}
+  
   date = new Date()
   fecha = this.date.toLocaleDateString('es-CO', {
     weekday: 'long',
@@ -22,37 +23,15 @@ export class DatosPage implements OnInit {
   constructor(private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.ccSupervisor = this.activateRoute.snapshot.paramMap.get('cc')
-    console.log("llego la cc: " + this.ccSupervisor)
-    this.datoSupervisor()
-    this.nombreSupervisor()
+    this.nombreSupervisor = this.activateRoute.snapshot.paramMap.get('nombre')
+    console.log("llego la cc: " + this.nombreSupervisor)
     this.cajeros()
   }
 
-  datoSupervisor() {
-    this.infoSupervisor = [
-      {
-        cc: "7654321",
-        nombre: "Santiago",
-        apellido: "Velez"
-      },
-      {
-        cc: "7654321",
-        nombre: "Juan",
-        apellido: "Perez"
-      }
-    ]
-    
-  }
+ 
 
 
-  nombreSupervisor() {
-    for (var nom of this.infoSupervisor) {
-      if (nom.cc === this.ccSupervisor) {
-        this.supervisor = nom.nombre + '' + nom.apellido
-      }
-    }
-  }  
+
 
 
   cajeros(){
@@ -78,6 +57,15 @@ export class DatosPage implements OnInit {
     ]
   }
   
+  onClick(i: number) {
+    if (this.show[i])
+    {
+      this.show[i]= false
+    } else
+    {
+      this.show[i]= true
+    }
+  }
 }
 
 

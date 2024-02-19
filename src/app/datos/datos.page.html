@@ -14,13 +14,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h3><strong>Supervisor:</strong>{{supervisor}}</h3>
+  <h3><strong>Supervisor:</strong>{{nombreSupervisor}}</h3>
   <h6>Fecha: {{fecha}}</h6>
-  <ion-card *ngFor = "let myDatos of datos">
+  <ion-card *ngFor = "let myDatos of datos; let i = index">
     <ion-card-content>
-      <ion-toggle [enableOnOffLabels]="true" [checked]>Enable Notifications</ion-toggle>
+      <ion-toggle [enableOnOffLabels]="true" (click)="onClick(i)" [checked]>Enable Notifications</ion-toggle>
       <ion-accordion-group>
-        <ion-accordion  value = "first" [disabled]="false">
+        <ion-accordion  value = "first" [disabled]="show[i]">
           <ion-item slot="header">
             <ion-label>{{myDatos.apellido}}</ion-label>
           </ion-item>
