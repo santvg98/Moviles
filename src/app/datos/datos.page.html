@@ -12,25 +12,25 @@
     <ion-title>punto de venta</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <h3><strong>Supervisor:</strong>{{nombreSupervisor}}</h3>
-  <h6>Fecha: {{fecha}}</h6>
-  <ion-card *ngFor = "let myDatos of datos; let i = index">
+  <h3><strong>Supervisor:</strong>{{ nombreSupervisor }}</h3>
+  <h6>Fecha: {{ fecha }}</h6>
+  <ion-card *ngFor="let myDatos of datos; let i = index">
     <ion-card-content>
       <ion-toggle [enableOnOffLabels]="true" (click)="onClick(i)" [checked]>Enable Notifications</ion-toggle>
       <ion-accordion-group>
-        <ion-accordion  value = "first" [disabled]="show[i]">
+        <ion-accordion value="first" [disabled]="show[i]">
           <ion-item slot="header">
-            <ion-label>{{myDatos.apellido}}</ion-label>
+            <ion-label>{{ myDatos.apellido }}</ion-label>
           </ion-item>
           <div class="ion-padding" slot="content">
-            {{myDatos.nombre}}
+            {{ myDatos.nombre }}
+            <h2><img [src]="myDatos.foto" alt="Foto" style="max-width: 200px; max-height: 300px;" (click)="redireccionar(myDatos.pagina)"></h2>
           </div>
         </ion-accordion>
       </ion-accordion-group>
     </ion-card-content>
   </ion-card>
 </ion-content>
-      
+
 

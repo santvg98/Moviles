@@ -1,0 +1,41 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    background-color: #3b1e31; /* Morado oscuro */
+    color: #f3e8e9; /* Blanco hueso */
+  }
+  
+  h1, h2, h3 {
+    color: #b1a296; /* Beige claro */
+  }
+  
+  .person-info p, .job-item p {
+    color: #f3e8e9; /* Blanco hueso */
+  }
+  
+  .person-info {
+    margin-bottom: 20px;
+  }
+  
+  .job-history {
+    margin-top: 20px;
+  }
+  
+  .job-item {
+    margin-bottom: 20px;
+  }
+  
+  .job-item h3 {
+    color: #b1a296; /* Beige claro */
+  }
+  
+  .job-item h3::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: #b1a296; /* Beige claro */
+    margin-top: 5px;
+  }
+  
+  
