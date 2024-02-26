@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/datos/:nombre"></ion-back-button>
+    </ion-buttons>
+    <ion-title>vigilantes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let myVigilante of vigilantes; let i = index">
+  <ion-card-content>
+    <ion-toggle [enableOnOffLabels]="true" (click)="onClick(i)" [checked]>Enable Vigilantes</ion-toggle>
+    <ion-accordion-group>
+      <ion-accordion value="first" [disabled]="show[i]">
+        <ion-item slot="header">
+          <ion-label>{{myVigilante.apellido}}</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          {{myVigilante.nombre}}
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
