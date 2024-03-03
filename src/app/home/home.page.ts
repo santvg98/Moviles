@@ -5,7 +5,6 @@ import { ToastController } from '@ionic/angular';
 
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -21,6 +20,20 @@ export class HomePage {
 
   constructor(private router: Router, private toastController: ToastController) {
     this.datoSupervisor()
+   }
+   ionViewWillEnter(){
+    this.ccSupervisor = ''
+    this.supervisor = ''
+    console.log('ionViewWillEnter')
+   }
+   ionViewDidEnter(){
+    console.log(' ionViewDidEnter')
+   }
+   ionViewWillLeave(){
+    console.log(' ionViewWillLeave')
+   }
+   ionViewDidLeave(){
+    console.log(' ionViewWillLeave')
    }
 
   async presentErrorToast() {
@@ -74,7 +87,7 @@ datoSupervisor() {
 
 nombreSupervisor(datos: string) {
   for (var nom of this.infoSupervisor) {
-    if (nom.cc == datos) {
+    if (nom.cc.toString() === datos.toString()) {
       this.supervisor = nom.nombre + '' + nom.apellido
       break; 
     }
