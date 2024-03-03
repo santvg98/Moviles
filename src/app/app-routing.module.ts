@@ -14,7 +14,9 @@ const routes: Routes = [
   {
     path: 'datos/:nombre',
     loadChildren: () => import('./datos/datos.module').then( m => m.DatosPageModule)
-  },  {
+  },
+  {
+
     path: 'vigilante',
     loadChildren: () => import('./vigilante/vigilante.module').then( m => m.VigilantePageModule)
   },
