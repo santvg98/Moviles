@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { VarGlobalesService } from '../service/var-globales.service';
+import { ModalController } from '@ionic/angular';
+import { InsertDatosPage } from './insert-datos/insert-datos.page';
 
 @Component({
   selector: 'app-datos',
@@ -18,12 +20,14 @@ export class DatosPage implements OnInit {
     month: 'long',
   });
 
-  // Inyecta ActivatedRoute y Router en el constructor
-  constructor(private activateRoute: ActivatedRoute, private router: Router,) {}
+
+  constructor(private activateRoute: ActivatedRoute, 
+    private router: Router, 
+    private varsGlobales: VarGlobalesService, 
+    private modalCtrl: ModalController) {}
 
   ngOnInit() {
-    // Obtiene el nombre del supervisor de los parámetros de la ruta
-    this.nombreSupervisor = this.activateRoute.snapshot.paramMap.get('nombre');
+    this.nombreSupervisor = this.varsGlobales.getNombre()
     console.log('llego la cc: ' + this.nombreSupervisor);
     this.cajeros();
   }
@@ -67,7 +71,21 @@ export class DatosPage implements OnInit {
       window.location.href = url; 
     }
   }
+
+
+  insert(){
+     this.modalCtrl.create({
+         component: InsertDatosPage
+     })
+     .then ((modal) =>{
+      modal.present()
+      return modal.onDidDismiss
+     }
+     )
+  }
 }
+
+
 
   
  

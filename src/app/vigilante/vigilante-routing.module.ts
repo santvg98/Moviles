@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: VigilantePage
+  },
+  {
+    path: 'servisios',
+    loadChildren: () => import('./servisios/servisios.module').then( m => m.ServisiosPageModule)
   }
 ];
 

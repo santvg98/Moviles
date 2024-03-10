@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Agregar CAjeros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ <form [formGroup]="form">
+  <ion-item>
+    <ion-input
+     type="text" 
+     label="Cédula cajero" 
+     labelPlacement="floating"  
+     formControlName="cedulaCajero"
+     required
+     ></ion-input>
+  </ion-item>
+ </form>
+</ion-content>

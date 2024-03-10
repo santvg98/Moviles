@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'; 
-import { ToastController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { Exportar } from './servisios/servisios.page';
 
 @Component({
   selector: 'app-vigilante',
@@ -18,7 +19,9 @@ export class VigilantePage implements OnInit {
     month: 'long',
   });
 
-  constructor(private activateRoute: ActivatedRoute) {} 
+  constructor(private activateRoute: ActivatedRoute,
+    private modalCtrl: ModalController,
+    ) {} 
 
   ngOnInit() {
     this.nombreSupervisor = this.activateRoute.snapshot.paramMap.get('nombre');
@@ -67,6 +70,16 @@ export class VigilantePage implements OnInit {
       window.location.href = url; 
     }
   }
+insert(){
+  this.modalCtrl.create({
+      component: Exportar
+  })
+  .then ((modal) =>{
+   modal.present()
+   return modal.onDidDismiss
+  }
+  )
+}
 }
 
 
