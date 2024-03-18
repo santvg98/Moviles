@@ -1,84 +1,94 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HomePage } from '../home/home.page';
+import { ActivatedRoute, Router } from '@angular/router';
+import { VarGlobalesService } from '../service/var-globales.service';
+import { ModalController } from '@ionic/angular';
+import { InsertDatosPage } from './insert-datos/insert-datos.page';
 
 @Component({
   selector: 'app-datos',
-  templateUrl: './datos.page.html',
+  templateUrl: './datos.page.html', 
   styleUrls: ['./datos.page.scss'],
 })
 export class DatosPage implements OnInit {
-  ccSupervisor: string | null = ''
-  infoSupervisor: Array<any> = []
-  datos: Array<any> = []
-  supervisor: string = ''
-  date = new Date()
+  nombreSupervisor: string | null = '';
+  datos: Array<any> = [];
+  show: { [key: number]: boolean } = {};
+  date = new Date();
   fecha = this.date.toLocaleDateString('es-CO', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
   });
 
-  constructor(private activateRoute: ActivatedRoute) { }
+
+  constructor(private activateRoute: ActivatedRoute, 
+    private router: Router, 
+    private varsGlobales: VarGlobalesService, 
+    private modalCtrl: ModalController) {}
 
   ngOnInit() {
-    this.ccSupervisor = this.activateRoute.snapshot.paramMap.get('cc')
-    console.log("llego la cc: " + this.ccSupervisor)
-    this.datoSupervisor()
-    this.nombreSupervisor()
-    this.cajeros()
+    this.nombreSupervisor = this.varsGlobales.getNombre()
+    console.log('llego la cc: ' + this.nombreSupervisor);
+    this.cajeros();
   }
 
-  datoSupervisor() {
-    this.infoSupervisor = [
-      {
-        cc: "7654321",
-        nombre: "Santiago",
-        apellido: "Velez"
-      },
-      {
-        cc: "7654321",
-        nombre: "Juan",
-        apellido: "Perez"
-      }
-    ]
-    
-  }
-
-
-  nombreSupervisor() {
-    for (var nom of this.infoSupervisor) {
-      if (nom.cc === this.ccSupervisor) {
-        this.supervisor = nom.nombre + '' + nom.apellido
-      }
-    }
-  }  
-
-
-  cajeros(){
+ 
+  cajeros() {
     this.datos = [
       {
-        nombre: "Andres",
-        apellido: "pinilla",
-        edad: 18,
-        caja: 1
+        nombre: 'Nacho',
+        apellido: 'lee',
+        foto: '../../assets/img/nacho.jpg',
+        pagina: '../../assets/nacho.html', 
       },
       {
-        nombre: "Luz Marina",
-        apellido: "Casañas",
-        edad: 47,
-        caja: 2
+        nombre: 'satoru ',
+        apellido: 'gojo',
+        foto: '../../assets/img/Gojo satoru cute♡.jpeg',
+        pagina: '../../assets/gojo.html', 
       },
       {
-        nombre: "Mariela",
-        apellido: "Hernandez",
-        edad: 87,
-        caja: 3
-      }
-    ]
+        nombre: 'Hu Tao',
+        apellido: '...',
+        foto: '../../assets/img/hu,tao.jpeg',
+        pagina: '../../assets/hutao.html', 
+      },
+    ];
   }
+
   
+  onClick(i: number) {
+    if (this.show[i]) {
+      this.show[i] = false;
+    } else {
+      this.show[i] = true;
+    }
+  }
+
+  
+  redireccionar(url: string) {
+    if (url) {
+      window.location.href = url; 
+    }
+  }
+
+
+  insert(){
+     this.modalCtrl.create({
+         component: InsertDatosPage
+     })
+     .then ((modal) =>{
+      modal.present()
+      return modal.onDidDismiss
+     }
+     )
+  }
 }
+
+
+
+  
+ 
 
 
 

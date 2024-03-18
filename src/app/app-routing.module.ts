@@ -12,9 +12,15 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'datos/:cc',
+    path: 'datos',
     loadChildren: () => import('./datos/datos.module').then( m => m.DatosPageModule)
   },
+  {
+
+    path: 'vigilante',
+    loadChildren: () => import('./vigilante/vigilante.module').then( m => m.VigilantePageModule)
+  },
+
 ];
 
 @NgModule({
