@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { VarGlobalesService } from '../service/var-globales.service';
 import { ModalController } from '@ionic/angular';
 import { InsertDatosPage } from './insert-datos/insert-datos.page';
+import { ConexionService } from '../services/conexion.service';
+import { Datos } from './models/datos';
 
 @Component({
   selector: 'app-datos',
@@ -11,7 +13,7 @@ import { InsertDatosPage } from './insert-datos/insert-datos.page';
 })
 export class DatosPage implements OnInit {
   nombreSupervisor: string | null = '';
-  datos: Array<any> = [];
+  datos!: Datos []
   show: { [key: number]: boolean } = {};
   date = new Date();
   fecha = this.date.toLocaleDateString('es-CO', {
@@ -24,7 +26,8 @@ export class DatosPage implements OnInit {
   constructor(private activateRoute: ActivatedRoute, 
     private router: Router, 
     private varsGlobales: VarGlobalesService, 
-    private modalCtrl: ModalController) {}
+    private modalCtrl: ModalController,
+    private conexion: ConexionService) { }
 
   ngOnInit() {
     this.nombreSupervisor = this.varsGlobales.getNombre()
@@ -32,8 +35,16 @@ export class DatosPage implements OnInit {
     this.cajeros();
   }
 
- 
   cajeros() {
+    this.conexion.consultaCajeros().subscribe(
+      (data:any) => {
+        this.datos = data
+      }
+    )
+  }
+
+ 
+  /*cajeros() {
     this.datos = [
       {
         nombre: 'Nacho',
@@ -54,7 +65,7 @@ export class DatosPage implements OnInit {
         pagina: '../../assets/hutao.html', 
       },
     ];
-  }
+  }*/
 
   
   onClick(i: number) {
