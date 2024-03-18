@@ -1,0 +1,7 @@
+{
+    "require": {
+        "slim/slim": "^4.13",
+        "httpsoft/http-message": "^1.1",
+        "httpsoft/http-server-request": "^1.1"
+    }
+}
