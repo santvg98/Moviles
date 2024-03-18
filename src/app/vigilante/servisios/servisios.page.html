@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Agregar vigilantes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ <form [formGroup]="form">
+  <ion-item style="width: 100%;">
+    <ion-input 
+     type="text" 
+     label="Nombre vigilante" 
+     labelPlacement="floating"  
+     required
+     ></ion-input> 
+  </ion-item>
+  <ion-item style="width: 100%;">
+    <ion-input 
+     type="text" 
+     label="Cédula vigilante" 
+     labelPlacement="floating"  
+     formControlName="cedulav"
+     required
+     ></ion-input> 
+  </ion-item>
+  <ion-item style="width: 100%;">
+    <ion-input
+     type="text" 
+     label="Número celular" 
+     labelPlacement="floating"  
+     formControlName="numerov"
+     required
+     ></ion-input>
+  </ion-item>
+ </form>
+</ion-content>
+
+

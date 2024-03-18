@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router'
 import { ToastController } from '@ionic/angular';
+import { VarGlobalesService } from '../service/var-globales.service';
+
 
 
 
@@ -11,14 +13,32 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  mySupervisor: any
+  ccSupervisor: any
   esValida: boolean = false
-  ccSupervisor: string | null = ''
-  cc2 = 1234567;
-  cc3 = 7654321;
+  supervisor: string = ''
+  infoSupervisor: Array<any> = []
+  
   
 
-  constructor(private router: Router, private toastController: ToastController) { }
+  constructor(private router: Router, private toastController: ToastController, private varsGlobales: VarGlobalesService) {
+    this.datoSupervisor()
+  }
+  
+
+  ionViewWillEnter() {
+    this.ccSupervisor = ""
+    this.supervisor = ""
+    console.log("ionViewWillEnter")
+  }
+  ionViewDidEnter() {
+    console.log("ionViewDidEnter")
+  }
+  ionViewWillLeave() {
+    console.log("ionViewWillLeave")
+  }
+  ionViewDidLeave() {
+    console.log("ionViewDidLeave")
+  }
 
   async presentErrorToast() {
     const toast = await this.toastController.create({
@@ -28,22 +48,57 @@ export class HomePage {
     });
     toast.present();
   }
+
+
   
 
   
-  ingresar() {
-    console.log("CC:" + this.mySupervisor)
-    if (this.mySupervisor == this.cc2 || this.mySupervisor == this.cc3) {
-      this.router.navigate(['../datos', this.mySupervisor])
-    }else{
+  ingresar()
+  {
+    this.nombreSupervisor(this.ccSupervisor)
+    if (this.ccSupervisor > 0 && this.supervisor.length > 0)
+    {
+      this.varsGlobales.setNombre(this.supervisor)
+      this.router.navigate(['../datos']);
+    } else
+
+      {
         this.presentErrorToast();
       }
+      
     
   }
 
   validarCedula() {
     const valida = /^[0-9]{7,10}$/;
-    this.esValida = valida.test(this.mySupervisor);
+    this.esValida = valida.test(this.ccSupervisor);
   }
 
+
+
+datoSupervisor() {
+  this.infoSupervisor = [
+    {
+      cc: "1234567",
+      nombre: "Santiago",
+      apellido: "Velez"
+    },
+    {
+      cc: "7654321",
+      nombre: "Juan",
+      apellido: "Perez"
+    }
+  ]
+  
+}
+
+nombreSupervisor(datos: string) {
+  for (var nom of this.infoSupervisor) {
+    if (nom.cc.toString() === datos.toString()) {
+      this.supervisor = nom.nombre + '' + nom.apellido
+      break; 
+    }
+  }
+  }
+  
 }

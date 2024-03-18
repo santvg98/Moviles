@@ -1,3 +1,23 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  
+  <ion-menu side="end" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>punto de venta</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item lines="none" [routerLink]="['/home']" >
+        <ion-icon slot="start"  name="home-outline"></ion-icon>
+        Home
+      </ion-item>
+      <ion-item lines="none" [routerLink]="['/vigilante']"  routerDirection="root">
+        <ion-icon slot="start"  name="home-outline"></ion-icon>
+        Vigilante
+      </ion-item>
+    </ion-content>
+  </ion-menu>
+
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

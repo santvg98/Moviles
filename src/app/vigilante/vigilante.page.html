@@ -1,0 +1,35 @@
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end"> <ion-menu-button></ion-menu-button></ion-buttons>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="datos"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true">
+    <h6>Fecha: {{ fecha }}</h6>
+    <ion-fab vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="insert()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-card *ngFor="let myDatos of datos; let i = index">
+      <ion-card-content>
+        <ion-toggle [enableOnOffLabels]="true" (click)="onClick(i)" [checked]>Enable Notifications</ion-toggle>
+        <ion-accordion-group>
+          <ion-accordion value="first" [disabled]="show[i]">
+            <ion-item slot="header">
+              <ion-label>{{ myDatos.apellido }}</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              {{ myDatos.nombre }}
+              <h2><img [src]="myDatos.foto" alt="Foto" style="max-width: 200px; max-height: 300px;" (click)="redirecciona(myDatos.pagina)"></h2>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</div>

@@ -1,0 +1,40 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    background-color: #121212; /* Fondo oscuro */
+    color: #ffffff; /* Texto blanco */
+  }
+  
+  h1, h2, h3 {
+    color: #66ffff; /* Azul claro */
+  }
+  
+  .person-info p, .job-item p {
+    color: #ffffff; /* Texto blanco */
+  }
+  
+  .person-info {
+    margin-bottom: 20px;
+  }
+  
+  .job-history {
+    margin-top: 20px;
+  }
+  
+  .job-item {
+    margin-bottom: 20px;
+  }
+  
+  .job-item h3 {
+    color: #66ffff; /* Azul claro */
+  }
+  
+  .job-item h3::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: #66ffff; /* Azul claro */
+    margin-top: 5px;
+  }
+  
