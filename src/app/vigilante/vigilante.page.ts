@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Exportar } from './servisios/servisios.page';
+import { ConexionService } from '../service/conexion.service';
+import { Datos } from './model/vigia';
+import { subscribeOn } from 'rxjs';
+import { VarGlobalesService } from '../service/var-globales.service';
 
 @Component({
   selector: 'app-vigilante',
@@ -10,7 +14,7 @@ import { Exportar } from './servisios/servisios.page';
 })
 export class VigilantePage implements OnInit {
   nombreSupervisor: string | null = '';
-  datos: Array<any> = [];
+  datos!:Datos[];
   show: { [key: number]: boolean } = {};
   date = new Date();
   fecha = this.date.toLocaleDateString('es-CO', {
@@ -21,42 +25,29 @@ export class VigilantePage implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute,
     private modalCtrl: ModalController,
+    private conexion: ConexionService,
+    private router: Router, 
+    private varsGlobales: VarGlobalesService
     ) {} 
 
-  ngOnInit() {
-    this.nombreSupervisor = this.activateRoute.snapshot.paramMap.get('nombre');
-    console.log('llego la cc: ' + this.nombreSupervisor);
+    ngOnInit() {
+      this.nombreSupervisor = this.activateRoute.snapshot.paramMap.get('nombre');
+      this.vigilantes(); // Llama al método para obtener los datos
+      // console.log('llego la cc: ' + this.datos); // No necesitas esto aquí
+    }
+    
 
-    this.Vigilantes();
-  }
+  vigilantes(){
+      this.conexion.consultaVigilante().subscribe(
+        (data:any) =>(
+          this.datos = data
+        
+        )
+      )
+     }
 
-  Vigilantes() {
-    this.datos = [
-      {
-        nombre: 'Red',
-        apellido: 'lapix',
-        foto: '../../assets/img/images.jpeg',
-        pagina: '../../assets/nacho.html',
-      },
-      {
-        nombre: 'xiao',
-        apellido: 'fhen',
-        foto: '../../assets/img/Sin título.jpeg',
-        pagina: '../../assets/gojo.html',
-      },
-      {
-        nombre: 'makoto',
-        apellido: 'riden',
-        foto: '../../assets/img/616.jpeg',
-        pagina: '../../assets/hutao.html',
-      },
-    ];
 
-    this.datos.forEach((_, index) => {
-      this.show[index] = false;
-    });
-  }
-
+  
   onClick(i: number) {
     if (this.show[i]) {
       this.show[i] = false;

@@ -21,11 +21,11 @@
         <ion-accordion-group>
           <ion-accordion value="first" [disabled]="show[i]">
             <ion-item slot="header">
-              <ion-label>{{ myDatos.apellido }}</ion-label>
+              <ion-label>{{ myDatos.vigilanteApellido }}</ion-label>
             </ion-item>
             <div class="ion-padding" slot="content">
-              {{ myDatos.nombre }}
-              <h2><img [src]="myDatos.foto" alt="Foto" style="max-width: 200px; max-height: 300px;" (click)="redirecciona(myDatos.pagina)"></h2>
+              {{ myDatos.vigilanteNombre }}
+              <!--<h2><img [src]="myDatos.foto" alt="Foto" style="max-width: 200px; max-height: 300px;" (click)="redirecciona(myDatos.pagina)"></h2>-->
             </div>
           </ion-accordion>
         </ion-accordion-group>

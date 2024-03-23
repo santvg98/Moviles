@@ -14,8 +14,8 @@ export class ConexionService {
   consultaCajeros(){
     return this.http.get(this.url+'/consultaCajeros')
   }
-  consultaVigilantes(){
-    return this.http.get(this.url+'/consultasVigilantes')
+  consultaVigilante(){
+    return this.http.get(this.url+'/consultaVigilante')
   }
   
 }
